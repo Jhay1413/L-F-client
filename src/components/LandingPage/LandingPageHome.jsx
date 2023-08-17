@@ -1,7 +1,6 @@
 import sample from '../../../public/sample1.jpg'
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
+
 const LandingHome = () => {
     return ( 
         <>
@@ -27,20 +26,20 @@ const LandingHome = () => {
                     <div className="flex flex-col items-center justify-center mx-auto ">
                         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 gap-4">
                             <div className="flex flex-col bg-white p-5 shadow-2xl ">
-                                <div className='text-5xl p-5 text'><FontAwesomeIcon icon={faUserSecret} /></div>
+                                <div className='text-5xl p-5 text'></div>
                                 <h1 className='font-bold text-2xl p-5'>Easy to Use</h1>
                                 <p className='text-md text-slate-500'>Intuitive Design meets industry know-how and usability. Become an expert in no time thanks to the App's intuitive design.</p>
 
                             </div>
                             <div className="flex flex-col bg-white p-5 shadow-2xl ">
-                                <div className='text-5xl p-5 text'><FontAwesomeIcon icon={faUserSecret} /></div>
+                                <div className='text-5xl p-5 text'></div>
                                 <h1 className='font-bold text-2xl p-5'>We Pay You!</h1>
                                 <p className='text-md text-slate-500'>Nothing is more important to us than returning lost property. That is why WE pay YOU for every return using our Handling Gateway!</p>
                                 
 
                             </div>
                             <div className="flex flex-col bg-white p-5 shadow-2xl ">
-                                <div className='text-5xl p-5 text'><FontAwesomeIcon icon={faUserSecret} /></div>
+                                <div className='text-5xl p-5 text'></div>
                                 <h1 className='font-bold text-2xl p-5'>Smart Technology</h1>
                                 <p className='text-md text-slate-500'>Image Recognition, Smart Matching and Chatbots are just a glimpse of the powerful technology within the Lost and Found App</p>
                             </div>

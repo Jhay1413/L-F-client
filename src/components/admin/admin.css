@@ -1,0 +1,13 @@
+.side-nav{
+    background-color: #011b2c;
+}
+.header{
+    background-color: #fff;
+}
+.content{
+    background-color: #cdced6;
+}
+.li-hover:hover{
+    background-color: #011524;
+
+}

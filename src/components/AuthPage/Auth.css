@@ -1,0 +1,6 @@
+.auth-image{
+    background-image: url('../../assets/auth-side-img.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}

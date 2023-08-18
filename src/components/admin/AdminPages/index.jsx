@@ -3,9 +3,11 @@ import { Image } from 'cloudinary-react';
 import { useContext } from "react";
 import { FaCheckToSlot} from "react-icons/fa6";
 import { DataContext } from "../context/DataContext";
+import { useNavigate } from 'react-router-dom';
 const AdminIndex = () => {
         const {data,setUpdate} = useContext(DataContext);
-
+        const count = data.length;
+        const navigate = useNavigate();
         const columns = [
                 {
                   title: 'Item Category',
@@ -74,7 +76,7 @@ const AdminIndex = () => {
                         <div className="flex flex-grow bg-white flex-row p-4 justify-between items-center text-inherit rounded-lg w-full shadow-lg">
                             <div className="flex flex-col w-full">
                                     <h1 className="text-xl font-semibold">Items</h1>
-                                    <h1 className="text-4xl font-semibold">100</h1>
+                                    <h1 className="text-4xl font-semibold">{count}</h1>
                             </div>
                             <div className="text-4xl text-emerald-300">
                                     <FaCheckToSlot/ >
@@ -116,7 +118,8 @@ const AdminIndex = () => {
                                 </div>
                                 
                                 <div className="w-full h-full bg-white rounded-lg p-4">
-                                        <Table dataSource={limitedData.map(data=>({...data,key:data._id}))} columns={columns} pagination={false}/>;
+                                        <Table dataSource={limitedData.map(data=>({...data,key:data._id}))} columns={columns} pagination={false}/>
+                                        <button className="p-5 text-blue-500" onClick={()=>navigate('itemList')}>SEE MORE--</button>
                                 </div>
                         </div>
                         <div className="flex w-full lg:flex-none bg-white lg:w-2/6  p-5 text-2xl font-semibold rounded-lg not-italic shadow-lg">

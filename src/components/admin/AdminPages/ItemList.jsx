@@ -97,7 +97,7 @@ const ItemList = () => {
                     <button className="p-2 bg-white rounded-sm flex justify-center items-center space-x-2"><div><FaFileExport/></div><div>Export</div></button>
                 </div>
                 <div className="w-full h-full bg-white rounded-lg p-4">
-                    <Table dataSource={data.map(data=>({...data,key:data._id}))} columns={columns} />;
+                    <Table dataSource={data.map(data=>({...data,key:data._id}))} columns={columns} pagination={{pageSize:7}} />;
                 </div>
           
             </div>

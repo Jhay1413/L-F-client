@@ -11,9 +11,6 @@ const LoginPage = () => {
         toast[status](message);
       }
       
-          
-
-
     const login = ()=>{
         console.log(user,password)
         if(user === "admin" && password === "admin"){

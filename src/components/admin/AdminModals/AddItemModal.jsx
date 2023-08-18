@@ -2,7 +2,7 @@ import { Modal } from "antd";
 import { useState } from "react";
 import { addItem,updateItem} from "../../../api/ItemApi";
 
-const ItemFormModal = ({modalOpen,setModalOpen,showToast,selectedItem,setSelectedItem,setDataChange}) => {
+const ItemFormModal = ({modalOpen,setModalOpen,showToast,selectedItem,setSelectedItem,setUpdate}) => {
 
     const [item,setItem] = useState({
         category: "",
@@ -39,7 +39,7 @@ const ItemFormModal = ({modalOpen,setModalOpen,showToast,selectedItem,setSelecte
             const response = await addItem(formData);
             showToast('success','Data has been Added !');
             setModalOpen(false);
-            setDataChange(true);
+            setUpdate(prev=>!prev);
        } catch (error) {
             console.log(error)
        }
@@ -60,7 +60,7 @@ const ItemFormModal = ({modalOpen,setModalOpen,showToast,selectedItem,setSelecte
             const response = await updateItem(selectedItem._id, formData);
             showToast('success','Data has been Updated !');
             setModalOpen(false);
-            setDataChange(true);
+            setUpdate(prev=>!prev);
        } catch (error) {
         
        }

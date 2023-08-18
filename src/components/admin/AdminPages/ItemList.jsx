@@ -3,16 +3,17 @@ import { FaPlus, FaFileExport} from "react-icons/fa6";
 import { Space, Table,Button ,Input} from 'antd';
 import { Image } from 'cloudinary-react';
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ItemFormModal from "../AdminModals/AddItemModal";
 import {toast,ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { deleteItem, getItem } from "../../../api/ItemApi";
+import { DataContext } from "../context/DataContext";
 const ItemList = () => {
 
   const [modalOpen,setModalOpen] = useState(false);
   const [dataChange,setDataChange] = useState(false);
-  const [items,setItems] = useState([]);
+  const {data,setUpdate} = useContext(DataContext)
   const [selectedItem,setSelectedItem] = useState({
     ItemCategory : "",
     ItemBrand : "",
@@ -21,17 +22,6 @@ const ItemList = () => {
     image: "",
   })
 
-  useEffect(()=>{
-    async function getItems(){
-      try {
-        const {data} = await getItem(); 
-        setItems(data);
-      } catch (error) {
-        
-      }
-    }
-    getItems();
-  },[dataChange])
   const showToast = (status,message)=>{
     toast[status](message);
   }
@@ -91,7 +81,7 @@ const ItemList = () => {
       const handleDelete = async (record)=>{
         const response = await deleteItem(record._id);
         showToast('success','Data has been deleted !');
-        setDataChange(!dataChange);
+        setUpdate(prev=>!prev);
       }
       const handleEdit = (record) =>{
         setSelectedItem(record);
@@ -107,11 +97,11 @@ const ItemList = () => {
                     <button className="p-2 bg-white rounded-sm flex justify-center items-center space-x-2"><div><FaFileExport/></div><div>Export</div></button>
                 </div>
                 <div className="w-full h-full bg-white rounded-lg p-4">
-                    <Table dataSource={items.map(item=>({...item,key:item._id}))} columns={columns} />;
+                    <Table dataSource={data.map(data=>({...data,key:data._id}))} columns={columns} />;
                 </div>
           
             </div>
-            <ItemFormModal modalOpen = {modalOpen }setModalOpen={setModalOpen} showToast={showToast} setDataChange={setDataChange} selectedItem={selectedItem} setSelectedItem={setSelectedItem}/>
+            <ItemFormModal modalOpen = {modalOpen }setModalOpen={setModalOpen} showToast={showToast} setUpdate={setUpdate} selectedItem={selectedItem} setSelectedItem={setSelectedItem}/>
         </>
      );
 }

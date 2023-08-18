@@ -122,7 +122,10 @@ const AdminIndex = () => {
                                         <button className="p-5 text-blue-500" onClick={()=>navigate('itemList')}>SEE MORE--</button>
                                 </div>
                         </div>
-                        <div className="flex w-full lg:flex-none bg-white lg:w-2/6  p-5 text-2xl font-semibold rounded-lg not-italic shadow-lg">
+                        <div className="flex-col w-full lg:flex-none bg-white lg:w-2/6  p-5 text-2xl font-semibold rounded-lg not-italic shadow-lg">
+                        <div className="w-full p-3 ">
+                                        <h1 className="text-2xl font-bold">Recent Claims</h1>
+                                </div>
                                 <div className="w-full h-full bg-white rounded-lg p-4">
                                         <Table columns={columns2} pagination={false}/>
                                 </div>

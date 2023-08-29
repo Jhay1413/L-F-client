@@ -1,28 +1,37 @@
 
+import { useState } from 'react';
+import { FaAlignJustify } from 'react-icons/fa6';
 import {Link} from 'react-router-dom'
 const LandingHeader = () => {
+    const[showNav,setShowNav] = useState(false)
     return ( 
         <>
            <div className="w-full fixed top-0 bg-blue-800 text-lg p-4 lg:text-xl text-white">
-                <div className=" h-1/4 w-4/5 p-5  mx-auto">
-                    <div className='h-full flex items-center'>
-                        <div className='flex justify-between w-full'>
-                            <div className="">
-                                Lost & Found
+                <div className=" w-full p-5 mx-auto">
+                    <div className='w-full flex items-center'>
+                        <div className='flex flex-col lg:justify-between w-full flex-col lg:flex-row '>
+                            <div className='flex items-center justify-between p-2'>
+                                <div className=''>
+                                    Lost & Found
+                                </div>
+                              
+                                <div className='lg:hidden items-center justify-center'>
+                                    <button onClick={()=>setShowNav(!showNav)}><FaAlignJustify size={25} /></button>                               
+                                </div>
+                              
                             </div>
-                            <div className="flex flex-row items-center justify-between space-x-5">
-                                <ul className="flex space-x-4 text-bold text-sm hidden lg:flex lg:space-x-4 lg:text-bold">
-                                    <li>HOME</li>
-                                    <li>ABOUT</li>
-                                    <li>FEATURES</li>
-                                    <li>CONTACT</li>
-                                </ul>
+                            <div className={`${showNav ? 'hidden' : 'flex'} flex-col justify-center lg:flex lg:flex-row items-center lg:justify-between space-y-5 lg:space-y-0 lg:space-x-2'`}>
+                                    <ul className="flex w-full text-bold text-sm flex-col items-center space-y-4 lg:space-y-0 lg:flex-row lg:space-x-4 lg:text-bold">
+                                        <li>HOME</li>
+                                        <li>ABOUT</li>
+                                        <li>FEATURES</li>
+                                        <li>CONTACT</li>
+                                    </ul>
+                                    <ul className='flex w-full items-center justify-center p-2'>
+                                        <Link to="/auth" className='w-full flex  items-center justify-center border-2 border-slate-500 p-2 '>LOGIN</Link>
+                                    </ul>
                             </div>
-                            <div className="flex items-center ">
-                                <ul className='flex  space-x-4 text-bold text-sm hidden lg:flex lg:space-x-4 lg:text-bold'>
-                                    <Link to="/auth"><li className='border border-gray-400 p-2 hover:border-2'>LOGIN</li></Link>
-                                </ul>
-                            </div>
+                            
                         </div>
 
                     </div>

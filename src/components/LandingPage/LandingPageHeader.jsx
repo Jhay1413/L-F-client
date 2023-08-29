@@ -12,7 +12,7 @@ const LandingHeader = () => {
                         <div className='flex flex-col lg:justify-between w-full flex-col lg:flex-row '>
                             <div className='flex items-center justify-between p-2'>
                                 <div className=''>
-                                   Kim dakot bout
+                                   Lost and Found
                                 </div>
                               
                                 <div className='lg:hidden items-center justify-center'>

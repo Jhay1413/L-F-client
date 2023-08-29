@@ -20,8 +20,7 @@ const LandingHeader = () => {
                             </div>
                             <div className="flex items-center ">
                                 <ul className='flex  space-x-4 text-bold text-sm hidden lg:flex lg:space-x-4 lg:text-bold'>
-                                    <Link to="/Login"><li className='border border-gray-400 p-2 hover:border-2'>LOGIN</li></Link>
-                                    <Link to="/Login"><li className='border border-gray-400 p-2 hover:border-2'>SIGN-UP</li></Link>
+                                    <Link to="/auth"><li className='border border-gray-400 p-2 hover:border-2'>LOGIN</li></Link>
                                 </ul>
                             </div>
                         </div>

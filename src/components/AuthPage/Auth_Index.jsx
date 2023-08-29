@@ -1,18 +1,18 @@
 import './Auth.css';
 import LoginPage from './LoginPage';
+import RegistrationPage from './Register';
+import { useState } from 'react';
 const AuthIndex = () => {
+
+    const [isRegister , setIsRegister] = useState(false) ;
+
+    const handleRegisterClick = () =>{
+        setIsRegister(true);
+        console.log(isRegister)
+    }
     return ( 
         <>
-            <div className="w-full h-screen bg-gray-200 flex justify-center items-center">
-                <div className="h-4/5 bg-white w-3/5 flex items-center justify-between ">
-                    <div className="h-full w-1/2">
-                        <LoginPage/>
-                    </div>
-                    <div className="h-full  w-1/2 auth-image">
-                        
-                    </div>
-                </div>
-           </div>
+            
         </>
      );
 }

@@ -10,14 +10,14 @@ import AuthIndex from './components/AuthPage/Auth_Index'
 import AdminApp from './components/admin/AdminApp'
 import AdminIndex from './components/admin/AdminPages'
 import AdminLayout from './components/admin/AdminLayout'
+import OutsideRoutes from './routes/OutsideRoutes'
 function App() {
 
   return (
     <>
       <Routes>
         <Route path='/' element={<LandingLayout><LandingHome/></LandingLayout>} />
-        <Route path='/Login' element={<AuthIndex/>} />
-        <Route path='/admin/*' element={<AdminApp/>} />
+        <Route path='/auth/*' element={<OutsideRoutes/>} />
       </Routes>
      
     </>

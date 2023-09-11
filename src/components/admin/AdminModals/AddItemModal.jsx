@@ -5,23 +5,24 @@ import { addItem,updateItem} from "../../../api/ItemApi";
 const ItemFormModal = ({modalOpen,setModalOpen,showToast,selectedItem,setSelectedItem,setUpdate}) => {
 
     const [item,setItem] = useState({
-        category: "",
-        brand: "",
-        color: "",
-        image : "",
+        ItemCategory: "",
+        ItemTypes: "",
+        ItemBrand: "",
+        ItemColor : "",
+        
     })
 
     const handleImageChange = (e)=>{
         if(selectedItem._id === undefined){
             setItem((prevState) => ({
                 ...prevState,
-                image: e.target.files[0],
+                ItemImage: e.target.files[0],
             }));
         }
         else{
             setSelectedItem((prevState)=>({
                 ...prevState,
-                image: e.target.files[0]
+                ItemImage: e.target.files[0]
             }))
         }
       
@@ -31,10 +32,11 @@ const ItemFormModal = ({modalOpen,setModalOpen,showToast,selectedItem,setSelecte
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append("image",item.image)
-        formData.append("category",item.category)
-        formData.append("brand",item.brand)
-        formData.append("color",item.color)
+        formData.append("ItemCategory",item.ItemCategory)
+        formData.append("ItemTypes",item.ItemTypes)
+        formData.append("ItemBrand",item.ItemBrand)
+        formData.append("ItemColor",item.ItemColor)
+        formData.append("image",item.ItemImage)
        try {
             const response = await addItem(formData);
             showToast('success','Data has been Added !');
@@ -49,12 +51,12 @@ const ItemFormModal = ({modalOpen,setModalOpen,showToast,selectedItem,setSelecte
 
         const formData = new FormData();
        
-        formData.append("image",selectedItem.image)
-        formData.append("category",selectedItem.ItemCategory)
-        formData.append("brand",selectedItem.ItemBrand)
-        formData.append("color",selectedItem.ItemColor)
-
-        formData.append("imageURL",selectedItem.imageUrl)
+        formData.append("ItemCategory",selectedItem.ItemCategory)
+        formData.append("ItemTypes",selectedItem.ItemTypes)
+        formData.append("ItemBrand",selectedItem.ItemBrand)
+        formData.append("ItemColor",selectedItem.ItemColor)
+        formData.append("image",selectedItem.ItemImage)
+        formData.append("imageURL",selectedItem.ItemImageUrl)
         
        try {
             const response = await updateItem(selectedItem._id, formData);
@@ -67,16 +69,18 @@ const ItemFormModal = ({modalOpen,setModalOpen,showToast,selectedItem,setSelecte
     }
     const modalClose = () =>{
         setSelectedItem({
-            ItemCategory : "",
-            ItemBrand : "",
-            ItemColor :"",
-            imageUrl : "",
+            ItemCategory: "",
+            ItemTypes: "",
+            ItemBrand: "",
+            ItemColor : "",
+            ItemImageUrl:""
         })
         setItem({
-            category: "",
-            brand: "",
-            color: "",
-            image : "",
+            ItemCategory: "",
+            ItemTypes: "",
+            ItemBrand: "",
+            ItemColor : "",
+            ItemImage:""
         })
         setModalOpen(!modalOpen);
        
@@ -103,11 +107,12 @@ const ItemFormModal = ({modalOpen,setModalOpen,showToast,selectedItem,setSelecte
                 <form>
                     <div className="flex flex-col space-y-4">
                       
-                        <input type="text" placeholder="Item Category"  name={selectedItem._id === undefined ? "category" : "ItemCategory"}   value={selectedItem.ItemCategory? selectedItem.ItemCategory : item.category}    className="w-full p-2 rounded-lg text-lg border-2"  onChange={handleInputChange}/>
-                        <input type="text" placeholder="Item Brand"     name={selectedItem._id === undefined ? "brand" : "ItemBrand"}         value={selectedItem.ItemBrand ? selectedItem.ItemBrand : item.brand}             className="w-full p-2 rounded-lg text-lg border-2"  onChange={handleInputChange}/>
-                        <input type="text" placeholder="Item Color"     name={selectedItem._id === undefined ? "color" : "ItemColor"}         value={selectedItem.ItemColor ? selectedItem.ItemColor : item.color}             className="w-full p-2 rounded-lg text-lg border-2"  onChange={handleInputChange}/>
+                        <input type="text"  placeholder="Item Category"  name="ItemCategory"        value={selectedItem.ItemCategory ? selectedItem.ItemCategory :item.ItemCategory}    className="w-full p-2 rounded-lg text-lg border-2"  onChange={handleInputChange}/>
+                        <input type="text"  placeholder="Item Types"     name="ItemTypes"           value={selectedItem.ItemTypes ? selectedItem.ItemTypes : item.ItemTypes}             className="w-full p-2 rounded-lg text-lg border-2"  onChange={handleInputChange}/>
+                        <input type="text"  placeholder="Item Brand"     name="ItemBrand"           value={selectedItem.ItemBrand ? selectedItem.ItemBrand : item.ItemBrand}             className="w-full p-2 rounded-lg text-lg border-2"  onChange={handleInputChange}/>
+                        <input type="text"  placeholder="Item Color"     name="ItemColor"          value={selectedItem.ItemColor ? selectedItem.ItemColor : item.ItemColor}             className="w-full p-2 rounded-lg text-lg border-2"  onChange={handleInputChange}/>
                         <h1>Upload Image</h1>
-                        <input type="file" accept="image/*" className=""  onChange={handleImageChange}/>
+                        <input type="file" accept="image/*"  name = "ItemImage"  onChange={handleImageChange}/>
                         {
                             selectedItem._id === undefined ? 
                             <button className="bg-blue-500 p-2 rounded-lg text-white text-lg" onClick={handleSubmit}>Submit</button>

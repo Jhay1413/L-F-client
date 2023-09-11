@@ -16,7 +16,10 @@ export default {
       },
       height:{
         '1/8': '12.5%'
-      }
+      },
+      fontFamily: {
+        'sans': ['Poppins', 'Helvetica', 'Arial', 'sans-serif'],
+      },
     },
   },
   plugins: [

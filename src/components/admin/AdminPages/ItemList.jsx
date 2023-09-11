@@ -15,11 +15,12 @@ const ItemList = () => {
   const [dataChange,setDataChange] = useState(false);
   const {data,setUpdate} = useContext(DataContext)
   const [selectedItem,setSelectedItem] = useState({
-    ItemCategory : "",
-    ItemBrand : "",
-    ItemColor :"",
-    imageUrl : "",
-    image: "",
+    ItemCategory: "",
+    ItemTypes: "",
+    ItemBrand: "",
+    ItemColor : "",
+    ItemImage:"",
+    ItemImageUrl:""
   })
 
   const showToast = (status,message)=>{
@@ -28,6 +29,11 @@ const ItemList = () => {
   
       
       const columns = [
+        {
+          title: 'Item ID',
+          dataIndex: '_id',
+          key: '_id',
+        },
         {
           title: 'Item Category',
           dataIndex: 'ItemCategory',
@@ -44,18 +50,29 @@ const ItemList = () => {
           key: 'ItemBrand',
         },
         {
+          title: 'Item Types',
+          dataIndex: 'ItemTypes',
+          key: 'ItemTypes',
+        },
+        {
+          title: 'Status',
+          dataIndex: 'Status',
+          key: 'Status',
+        },
+        {
           title: 'Date',
           dataIndex: 'Date',
           key: 'Date',
         },
+        
         {
           title:'Image',
-          key:'image',
+          key:'ItemImage',
           render:(record =>(
-            <a href ={record.imageUrl} target="_blank" rel="noopener noreferrer">
+            <a href ={record.ImageUrl} target="_blank" rel="noopener noreferrer">
             <Image
               cloudName="ItemImage"
-              publicId = {record.imageUrl}
+              publicId = {record.ImageUrl}
               width="50" // Adjust width as needed
               height="50" // Adjust height as needed
               crop="fill"

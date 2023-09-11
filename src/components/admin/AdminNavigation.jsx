@@ -12,7 +12,8 @@ const AdminNav = () => {
               <ul className='text-sm lg:text-md'>
                 <Link to="/admin/"><li className='flex justify-start items-center space-x-4 p-4 li-hover'><FaHouseChimney/><h1>Home</h1></li></Link>
                 <Link to="/admin/itemlist"><li className='flex justify-start items-center space-x-4 p-4 li-hover'><FaList/><h1>List of Items</h1></li></Link>
-                <Link><li className='flex justify-start items-center space-x-4 p-4 li-hover'>< FaBookOpen/><h1>Match Items</h1></li></Link>
+                <Link to="/admin/pendingList"><li className='flex justify-start items-center space-x-4 p-4 li-hover'>< FaBookOpen/><h1>Request </h1></li></Link>
+                <Link><li className='flex justify-start items-center space-x-4 p-4 li-hover'>< FaBookOpen/><h1>Returned Items</h1></li></Link>
                 <Link><li className='flex justify-start items-center space-x-4 p-4 li-hover'><FaIdCardClip/><h1>User</h1></li></Link>
             </ul>
             </div>

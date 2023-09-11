@@ -1,23 +1,31 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {Routes,Route,Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import {toast,ToastContainer} from 'react-toastify';
-const LoginPage = ({onRegisterClick}) => {
+import { loginAuth } from '../../api/AccountApi';
+import { useAuth } from '../../hooks/useAuth';
+
+const LoginPage = () => {
+
+    
     const navigate = useNavigate()
     const [user,setUser] = useState();
     const [password,setPassword] = useState();
-
     const showToast = (status,message)=>{
         toast[status](message);
       }
       
-    const login = ()=>{
-        console.log(user,password)
-        if(user === "admin" && password === "admin"){
-            navigate('/admin')
-        }
-        else{
-            showToast('error','Incorrect username or password !')
+   
+    const login = async()=>{
+        try {
+            const response = await loginAuth(user,password);
+            localStorage.setItem("userInfo",JSON.stringify(response.data));
+
+            response.data.userRoles === 1 
+                ?   navigate('/Users/',{replace:true})
+                :   navigate('/Admin/',{replace:true})           
+        } catch (error) {
+            console.log(error);
         }
     }
     return ( 

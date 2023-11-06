@@ -34,7 +34,7 @@ const LoginPage = () => {
             <div className="w-full h-full flex items-center justify-center flex-col space-y-4 ">
                 <div className="flex flex-col items-center space-y-4">
                     <h1 className="text-2xl lg:text-4xl text-bold ">Login Page</h1>
-                    <p className="text-sm text-gray-400 lg:text-lg">Login your EVSU Account !</p>
+                    <p className="text-sm text-gray-400 lg:text-lg">Login your Account !</p>
                 </div>
                 
                 <div className="flex flex-col space-y-4 w-3/4">

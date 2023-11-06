@@ -7,6 +7,8 @@ export const DataProvider = ({children}) => {
     const [data,setData] = useState([]);
     const [update,setUpdate] = useState(false);
     const [pendingItems ,setPendingItems] = useState();
+    const [confirmMatchItems,setConfirmMatchItems] = useState();
+    const [claimedItems,setClaimedItems] = useState();
     
     useEffect(()=> {
         async function getItems(){
@@ -15,8 +17,9 @@ export const DataProvider = ({children}) => {
             const {data} = await getItem(); 
             setData(data);
             const pendingData = await getAllMatchItemRequest();
-            setPendingItems(pendingData)
-              
+            setPendingItems(pendingData.filter(data => data.Status == "Pending"))
+            setConfirmMatchItems(pendingData.filter(data=>data.Status == "Found"));
+            setClaimedItems(pendingData.filter(data=>data.Status== "Claimed"))
             } catch (error) {
               console.log("errrrr")
             }
@@ -25,7 +28,7 @@ export const DataProvider = ({children}) => {
     },[update])
 
     return(
-        <DataContext.Provider value={{data,setUpdate,pendingItems}}>
+        <DataContext.Provider value={{data,setUpdate,pendingItems,confirmMatchItems,claimedItems}}>
             {children}
         </DataContext.Provider>
     )

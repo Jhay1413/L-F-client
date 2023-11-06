@@ -1,19 +1,12 @@
 import { Modal } from "antd";
 import { Image } from "cloudinary-react";
-import { useEffect, useState } from "react";
-import { ConfirmMatchItems } from "../../../api/MatchItemApi";
 
-const ItemPendingModal = ({selectedItem,openViewModal,setOpenViewModal,setUpdate}) => {
+const ItemPendingModal = ({selectedItem,openViewModal,setOpenViewModal,modalDynamicData}) => {
 
-    const confirmMatch =  async()=>{
-        const response = await ConfirmMatchItems(selectedItem);
-        console.log(response)
-        setUpdate(prev=>!prev);
-        setOpenViewModal(!openViewModal)
-    }
+   
     return ( 
         <>
-            <Modal title="Pending Items" open={openViewModal} footer={null} onCancel={()=>setOpenViewModal(!openViewModal)}  width={'50%'} bodyStyle={{ height: '100%', overflow: 'auto' }}>
+            <Modal title={modalDynamicData.title} open={openViewModal} footer={null} onCancel={()=>setOpenViewModal(!openViewModal)}  width={'50%'} bodyStyle={{ height: '100%', overflow: 'auto' }}>
                 <div className="w-full h-full grid grid-cols-2 gap-4 text-sm">
                     <div className="w-full items-center justify-center border-2 rounded-lg max-h-full grid grid-rows-3 grid-flow-col">
                         <div className="w-full h-full p-2 items-center justify-center row-span-2">
@@ -49,7 +42,6 @@ const ItemPendingModal = ({selectedItem,openViewModal,setOpenViewModal,setUpdate
                                     publicId = {selectedItem.matchWith.ImageUrl}
                                     crop="fill"
                                     className="rounded-lg w-full h-full object-cover"
-                                   
                                     />
                                 </a>
                             </div>
@@ -66,8 +58,10 @@ const ItemPendingModal = ({selectedItem,openViewModal,setOpenViewModal,setUpdate
                     </div>
                 </div>
                 <div className="w-full flex items-center flex-row justify-center space-x-2 p-4">
-                    <button className="bg-emerald-400 text-white p-2 text-xl rounded-lg" onClick={confirmMatch}>Confirm</button>
-                    <button className="bg-red-400 text-white p-2 text-xl rounded-lg">Decline</button>
+
+                  {modalDynamicData?.buttons?.map((button,index)=>(
+                    <button key={index} onClick={button.onClick} className={button.className}>{button.label}</button>
+                  ))}
                 </div>
             </Modal>
         </>

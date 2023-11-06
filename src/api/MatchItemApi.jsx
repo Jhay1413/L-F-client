@@ -2,9 +2,10 @@ import axios from 'axios'
 
 const MatchItemApi = import.meta.env.VITE_LOST_ITEMS_API
 
-export const ConfirmMatchItems = async (data) =>{
+
+export const updateStatus = async (data,status) =>{
     try {
-        const response = await axios.put(`${MatchItemApi}/ConfirmMatchItems`,data)
+        const response = await axios.put(`${MatchItemApi}/updateStatus`,{data,status})
         return response
     } catch (error) {
         console.log(error);
@@ -12,8 +13,7 @@ export const ConfirmMatchItems = async (data) =>{
 }
 export const getAllMatchItemRequest = async () =>{
     try {
-        const response = await axios.get(`${MatchItemApi}/GetAllPendingRequest`);
-       
+        const response = await axios.get(`${MatchItemApi}/GetAllRequest`);
         return response.data;
     } catch (error) {
         console.log("Api Error",error)

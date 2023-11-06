@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router';
-
+import logo from '../../../public/logo.png'
 function AuthLayout({children}) {
   const navigate = useNavigate()
   
@@ -22,8 +22,8 @@ function AuthLayout({children}) {
             {children}
            
         </div>
-        <div className="hidden lg:h-full lg:w-1/2 lg:block auth-image ">
-          
+        <div className="hidden lg:h-full lg:w-1/2 lg:block lg:flex lg:justify-center">
+          <img src={logo} alt="Logo" className='rounded-lg'/>
         </div>
     </div>
 </div>

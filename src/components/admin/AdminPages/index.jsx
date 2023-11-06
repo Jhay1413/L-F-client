@@ -84,7 +84,7 @@ const AdminIndex = () => {
                         </div>
                         <div className="flex flex-grow bg-white flex-row p-4 justify-between items-center text-inherit rounded-lg w-full shadow-lg">
                             <div className="flex flex-col ">
-                                    <h1 className="text-xl font-semibold">Users</h1>
+                                    <h1 className="text-xl ">Users</h1>
                                     <h1 className="text-4xl font-semibold">0</h1>
                             </div>
                             <div className="text-4xl text-cyan-300">

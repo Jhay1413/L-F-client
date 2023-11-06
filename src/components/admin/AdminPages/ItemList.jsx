@@ -90,7 +90,8 @@ const ItemList = () => {
           render:(text,record)=>(
             <Space size="middle">
             <Button onClick={()=> handleEdit(record)} >Edit</Button>
-            <Button  onClick ={()=> handleDelete(record)}type="primary" danger>Delete</Button>
+            {record.Status === "Not Found" ? <Button  onClick ={()=> handleDelete(record)}type="primary" danger>Delete</Button> : <Button  onClick ={()=> handleDelete(record)}type="primary" danger disabled>Delete</Button>}
+           
           </Space>
           )
         }

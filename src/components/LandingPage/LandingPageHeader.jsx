@@ -6,8 +6,8 @@ const LandingHeader = () => {
     const[showNav,setShowNav] = useState(false)
     return ( 
         <>
-           <div className="w-full fixed top-0 bg-blue-800 text-lg p-4 lg:text-xl text-white">
-                <div className=" w-full p-5 mx-auto">
+           <div className="w-full fixed top-0 bg-red-800 text-lg  lg:text-xl text-white">
+                <div className=" w-full p-2 mx-auto">
                     <div className='w-full flex items-center'>
                         <div className='flex flex-col lg:justify-between w-full flex-col lg:flex-row '>
                             <div className='flex items-center justify-between p-2'>

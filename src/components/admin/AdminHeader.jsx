@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 const AdminHeader = ({navState,setNavState}) => {
     const navigate = useNavigate();
     const logout = () =>{
-        localStorage.removeItem('userData');
+        localStorage.removeItem('userInfo');
         navigate('/auth/')
     }
     return ( 

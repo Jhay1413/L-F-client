@@ -1,38 +1,33 @@
-import { useContext, useEffect, useState } from "react";
-import { DataContext } from "../context/DataContext";
-import { FaPlus, FaFileExport} from "react-icons/fa6";
 import { Button, Space, Table } from "antd";
-import { Image } from 'cloudinary-react';
+import { useContext, useState } from "react";
+import { DataContext } from "../context/DataContext";
+import { Image } from "cloudinary-react";
+import { FaPlus, FaFileExport} from "react-icons/fa6";
 import ItemPendingModal from "../AdminModals/ItemPendingModal";
-import {updateStatus } from "../../../api/MatchItemApi";
-const PendingMatchPage = () => {
-
-    const {pendingItems,setUpdate} = useContext(DataContext);
+import { updateStatus } from "../../../api/MatchItemApi";
+const ApproveMatchPage = () => {
+    const {confirmMatchItems,setUpdate} = useContext(DataContext) 
     const [selectedItem,setSelectedItem] = useState();
-    const [openViewModal,setOpenViewModal] = useState(false);
-    
-    const confirmMatch =  async()=>{
-      const status = "Found"
-      const response = await updateStatus(selectedItem,status);
-      console.log(response)
+    const [openViewModal, setOpenViewModal] = useState(false);
+
+    const claimItem = async() =>{
+      const status = "Claimed"
+      const response = await updateStatus(selectedItem,status)
       setUpdate(prev=>!prev);
       setOpenViewModal(!openViewModal)
-  }
-  const unConfirmedMatch =  async()=>{
-    const status = "Not Found"
-    const response = await updateStatus(selectedItem,status);
-    console.log(response)
-    setUpdate(prev=>!prev);
-    setOpenViewModal(!openViewModal)
-}
- 
-   
-    const modalDynamicData ={
-      title:'Pending Items',
+    }
+    const unmatchedItem = async() =>{
+      const status = "Pending"
+      const response = await updateStatus(selectedItem,status)
+      setUpdate(prev=>!prev);
+      setOpenViewModal(!openViewModal)
+    }
+    const modalDynamicData = {
+      title:'Unclaimed Items',
       buttons:[
-        {label:'Confirm',onClick:confirmMatch, className:"bg-emerald-400 text-white p-2 text-xl rounded-lg"},
-        {label:'Decline',onClick:unConfirmedMatch,className:"bg-red-400 text-white p-2 text-xl rounded-lg "}
-    ]
+        {label:'Claim', onClick:claimItem,className:"bg-emerald-400 text-white p-2 text-xl rounded-lg"},
+        {label:'Unmatch',onClick:unmatchedItem,className:"bg-red-400 text-white p-2 text-xl rounded-lg "}
+      ]
     }
     const columns = [
         {
@@ -53,7 +48,7 @@ const PendingMatchPage = () => {
             dataIndex: 'userId',
             key: 'userId',
             render: (userId)=>(
-              <>{userId.firstName}</>
+              <>{userId?.firstName}</>
             )
           },
         {
@@ -84,8 +79,6 @@ const PendingMatchPage = () => {
         setOpenViewModal(!openViewModal)
 
        }
-       
-      
     return ( 
         <>
             <div className="flex flex-col w-full h-full space-y-4">
@@ -94,13 +87,12 @@ const PendingMatchPage = () => {
                  <button className="p-2 bg-white rounded-sm flex justify-center items-center space-x-2"><div><FaFileExport/></div><div>Export</div></button>
              </div>
              <div className="w-full h-full bg-white rounded-lg p-4">
-                 <Table dataSource={pendingItems?.map(data=>({...data,key:data._id}))} columns={columns} pagination={{pageSize:7}} />
+                 <Table dataSource={confirmMatchItems?.map(data=>({...data,key:data._id}))} columns={columns} pagination={{pageSize:7}} />
              </div>
-             {selectedItem ? (  <ItemPendingModal selectedItem={selectedItem} openViewModal={openViewModal} setOpenViewModal={setOpenViewModal} modalDynamicData={modalDynamicData}/>) : null}
-          
+             {openViewModal ? (  <ItemPendingModal selectedItem={selectedItem} openViewModal={openViewModal} setOpenViewModal={setOpenViewModal} setUpdate={setUpdate} modalDynamicData={modalDynamicData}/>) : null}
          </div>
         </>
      );
 }
  
-export default PendingMatchPage;
+export default ApproveMatchPage;

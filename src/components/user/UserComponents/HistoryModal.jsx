@@ -31,9 +31,9 @@ const UserHistoryModal = ({isModalOpen,setIsModalOpen,selectedHistory}) => {
                             <li className="p-2 border-b-2  w-full justify-start items-center flex"><h1 className="w-full">Category</h1><h1 className="w-full flex justify-start font-bold">{selectedHistory.ItemCategory}</h1></li>
                             <li className="p-2 border-b-2  w-full justify-start items-center flex"><h1 className="w-full">Brand</h1><h1 className="w-full flex justify-start font-bold">{selectedHistory.ItemBrand}</h1></li>
                             <li className="p-2 border-b-2  w-full justify-start items-center flex"><h1 className="w-full">Color</h1><h1 className="w-full flex justify-start font-bold">{selectedHistory.ItemColor}</h1></li>
-                            <li className="p-2 border-b-2  w-full justify-start items-center flex"><h1 className="w-full">Types</h1><h1 className="w-full flex justify-start font-bold">{selectedHistory.ItemTypes}</h1></li>
-                            <li className="p-2 border-b-2  w-full justify-start items-center flex"><h1 className="w-full">Types</h1><h1 className="w-full flex justify-start font-bold">{selectedHistory.Status}</h1></li>
-                            <li className="p-2 border-b-2  w-full justify-start items-center flex"><h1 className="w-full">Types</h1><h1 className="w-full flex justify-start font-bold">{selectedHistory.Date}</h1></li>
+                            <li className="p-2 border-b-2  w-full justify-start items-center flex"><h1 className="w-full">Item Types</h1><h1 className="w-full flex justify-start font-bold">{selectedHistory.ItemTypes}</h1></li>
+                            <li className="p-2 border-b-2  w-full justify-start items-center flex"><h1 className="w-full">Status</h1><h1 className="w-full flex justify-start font-bold">{selectedHistory.Status}</h1></li>
+                            <li className="p-2 border-b-2  w-full justify-start items-center flex"><h1 className="w-full">Date</h1><h1 className="w-full flex justify-start font-bold">{selectedHistory.Date}</h1></li>
                         </ul>
                     </div>
                 </div>

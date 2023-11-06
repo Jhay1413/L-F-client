@@ -52,7 +52,7 @@ const UserNavigation = () => {
                             <div className="">
                               {item.Date}
                             </div>
-                            <div className={`${item.Status == "Found" ? 'text-green-500' : 'text-red-500'}`}>
+                            <div className={`${item.Status == "Found" ? 'text-green-500' : item.Status == "Claimed" ? 'text-yellow-500' : 'text-red-500'}`}>
                               {item.Status}
                             </div> 
                           </button>

@@ -22,7 +22,7 @@ const ItemList = () => {
     ItemImage:"",
     ItemImageUrl:""
   })
-
+  const [searchedData,setSearchData] = useState("");
   const showToast = (status,message)=>{
     toast[status](message);
   }
@@ -33,6 +33,18 @@ const ItemList = () => {
           title: 'Item ID',
           dataIndex: '_id',
           key: '_id',
+          filteredValue: [searchedData],
+          onFilter:(value,record)=>{
+            return (
+              String(record.ItemCategory)
+              .toLowerCase()
+              .includes(value.toLowerCase()) ||
+              String(record.Status)
+              .toLowerCase()
+              .includes(value.toLowerCase())
+              
+              )
+          }
         },
         {
           title: 'Item Category',
@@ -60,9 +72,14 @@ const ItemList = () => {
           key: 'Status',
         },
         {
-          title: 'Date',
-          dataIndex: 'Date',
-          key: 'Date',
+          title: 'Date Found',
+          dataIndex: 'DateFound',
+          key: 'DateFound',
+        },
+        {
+          title: 'Returned By',
+          dataIndex: 'ReturnedBy',
+          key: 'ReturnedBy',
         },
         
         {
@@ -115,7 +132,16 @@ const ItemList = () => {
                     <button className="p-2 bg-white rounded-sm flex justify-center items-center space-x-2"><div><FaFileExport/></div><div>Export</div></button>
                 </div>
                 <div className="w-full h-full bg-white rounded-lg p-4">
-                    <Table dataSource={data.map(data=>({...data,key:data._id}))} columns={columns} pagination={{pageSize:7}} />;
+                      <div className="w-full justify-end items-center flex">
+                          <Input.Search 
+                            placeholder='searchbox'
+                            onChange={(e)=>{
+                              setSearchData(e.target.value.toLowerCase());
+                            }}
+                            className='md:w-52 p-2'
+                          />
+                    </div>
+                    <Table dataSource={data.map(data=>({...data,key:data._id}))} columns={columns} pagination={{pageSize:5}} />;
                 </div>
           
             </div>

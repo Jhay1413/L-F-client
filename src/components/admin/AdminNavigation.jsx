@@ -15,7 +15,7 @@ const AdminNav = () => {
                 <Link to="/admin/pendingList"><li className='flex justify-start items-center space-x-4 p-4 li-hover'>< FaBookOpen/><h1>Request </h1></li></Link>
                 <Link to="/admin/ConfirmedItems"><li className='flex justify-start items-center space-x-4 p-4 li-hover'>< FaBookOpen/><h1>Approved Items</h1></li></Link>
                 <Link to="/admin/ClaimedItems"><li className='flex justify-start items-center space-x-4 p-4 li-hover'>< FaBookOpen/><h1>Claimed Items</h1></li></Link>
-                <Link><li className='flex justify-start items-center space-x-4 p-4 li-hover'><FaIdCardClip/><h1>User</h1></li></Link>
+                <Link to="/admin/UserRecord"><li className='flex justify-start items-center space-x-4 p-4 li-hover'>< FaBookOpen/><h1>User Record</h1></li></Link>
             </ul>
             </div>
           

@@ -1,4 +1,4 @@
-import { Modal } from "antd";
+import { DatePicker, Modal ,Form,Input} from "antd";
 import { useState } from "react";
 import { addItem,updateItem} from "../../../api/ItemApi";
 
@@ -9,9 +9,12 @@ const ItemFormModal = ({modalOpen,setModalOpen,showToast,selectedItem,setSelecte
         ItemTypes: "",
         ItemBrand: "",
         ItemColor : "",
+        returnedBy:"",
+        dateFound:"",
+        ItemImage:"",
         
     })
-
+    console.log(selectedItem)
     const handleImageChange = (e)=>{
         if(selectedItem._id === undefined){
             setItem((prevState) => ({
@@ -37,6 +40,8 @@ const ItemFormModal = ({modalOpen,setModalOpen,showToast,selectedItem,setSelecte
         formData.append("ItemBrand",item.ItemBrand)
         formData.append("ItemColor",item.ItemColor)
         formData.append("image",item.ItemImage)
+        formData.append('returnedBy',item.returnedBy)
+        formData.append('dateFound',item.dateFound);
        try {
             const response = await addItem(formData);
             showToast('success','Data has been Added !');
@@ -57,6 +62,9 @@ const ItemFormModal = ({modalOpen,setModalOpen,showToast,selectedItem,setSelecte
         formData.append("ItemColor",selectedItem.ItemColor)
         formData.append("image",selectedItem.ItemImage)
         formData.append("imageURL",selectedItem.ItemImageUrl)
+        formData.append('returnedBy',item.returnedBy)
+        formData.append('dateFound',item.dateFound);
+       
         
        try {
             const response = await updateItem(selectedItem._id, formData);
@@ -85,8 +93,8 @@ const ItemFormModal = ({modalOpen,setModalOpen,showToast,selectedItem,setSelecte
         setModalOpen(!modalOpen);
        
     }
-    const handleInputChange = (e)=>{
-        const { name, type, value, } = e.target;
+    const handleInputChange = (name,e)=>{
+        const {  value, } = e.target;
         if(selectedItem._id === undefined){
             setItem((prevState =>({
                 ...prevState,
@@ -101,28 +109,126 @@ const ItemFormModal = ({modalOpen,setModalOpen,showToast,selectedItem,setSelecte
         }
       
     }
+    const handleDateChange = (name, date) => {
+        if (selectedItem._id === undefined) {
+          setItem((prevState) => ({
+            ...prevState,
+            [name]: date,
+          }));
+        } else {
+          setSelectedItem((prevState) => ({
+            ...prevState,
+            [name]: date,
+          }));
+        }
+      };
+    
     return ( 
         <>
             <Modal title="Add Item" open={modalOpen} onCancel={modalClose} footer={null}>
-                <form>
-                    <div className="flex flex-col space-y-4">
-                      
-                        <input type="text"  placeholder="Item Category"  name="ItemCategory"        value={selectedItem.ItemCategory ? selectedItem.ItemCategory :item.ItemCategory}    className="w-full p-2 rounded-lg text-lg border-2"  onChange={handleInputChange}/>
-                        <input type="text"  placeholder="Item Types"     name="ItemTypes"           value={selectedItem.ItemTypes ? selectedItem.ItemTypes : item.ItemTypes}             className="w-full p-2 rounded-lg text-lg border-2"  onChange={handleInputChange}/>
-                        <input type="text"  placeholder="Item Brand"     name="ItemBrand"           value={selectedItem.ItemBrand ? selectedItem.ItemBrand : item.ItemBrand}             className="w-full p-2 rounded-lg text-lg border-2"  onChange={handleInputChange}/>
-                        <input type="text"  placeholder="Item Color"     name="ItemColor"          value={selectedItem.ItemColor ? selectedItem.ItemColor : item.ItemColor}             className="w-full p-2 rounded-lg text-lg border-2"  onChange={handleInputChange}/>
-                        <h1>Upload Image</h1>
-                        <input type="file" accept="image/*"  name = "ItemImage"  onChange={handleImageChange}/>
+            <Form layout="vertical"  initialValues={selectedItem ? selectedItem : ""}>
+                <div className="grid grid-cols-4 gap-2">
+                    <Form.Item
+                        className="col-span-2"
+                        label="Item Category"
+                        name="ItemCategory"
+                        rules={[
                         {
+                            required: true,
+                            message: 'Please input Item Category!',
+                        },
+                        ]}
+                    >
+                        <Input onChange={(e)=>handleInputChange('ItemCategory',e)}/>
+                    </Form.Item>
+                    <Form.Item
+                        className="col-span-2"
+                        label="Item Types"
+                        name="ItemTypes"
+                        rules={[
+                        {
+                            required: true,
+                            message: 'Please input Item Types!',
+                        },
+                        ]}
+                    >
+                        <Input onChange={(e)=>handleInputChange('ItemTypes',e)}/>
+                    </Form.Item>
+                   
+                    <Form.Item
+                        className="col-span-2"
+                        label="Item Brand"
+                        name="ItemBrand"
+                        rules={[
+                        {
+                            required: true,
+                            message: 'Please input Item Brand!',
+                        },
+                        ]}
+                    >
+                        <Input onChange={(e)=>handleInputChange('ItemBrand',e)}/>
+                    </Form.Item>
+                    <Form.Item
+                        className="col-span-2"
+                        label="Item Color"
+                        name="ItemColor"
+                        rules={[
+                        {
+                            required: true,
+                            message: 'Please input Item Color!',
+                        },
+                        ]}
+                    >
+                        <Input onChange={(e)=>handleInputChange('ItemColor',e)}/>
+                    </Form.Item>
+                    <Form.Item
+                        className="col-span-2"
+                        label="Returned By:"
+                        name="returnedBy"
+                        rules={[
+                        {
+                            required: true,
+                            message: 'Please input Returned By:!',
+                        },
+                        ]}
+                    >
+                        <Input onChange={(e)=>handleInputChange('returnedBy',e)}/>
+                    </Form.Item>
+                    <Form.Item
+                        className="col-span-2"
+                        label="Date Found:"
+                        name="dateFound"
+                        rules={[
+                        {
+                            required: true,
+                            message: 'Please input Date Found!',
+                        },
+                        ]}
+                    >
+                       <DatePicker onChange={(date, dateString) => handleDateChange('dateFound', date)} />
+                    </Form.Item>
+                    <Form.Item
+                        className="col-span-2"
+                        label="Upload Image:"
+                        name="uploadImage"
+                        rules={[
+                        {
+                            required: true,
+                            message: 'Please input Upload Image!',
+                        },
+                        ]}
+                    >
+                         <input type="file" accept="image/*"  name = "ItemImage"  onChange={handleImageChange}/>
+                    </Form.Item>
+                </div>
+                {
                             selectedItem._id === undefined ? 
                             <button className="bg-blue-500 p-2 rounded-lg text-white text-lg" onClick={handleSubmit}>Submit</button>
                             :
                             <button className="bg-blue-500 p-2 rounded-lg text-white text-lg" onClick={handleUpdate}>Update</button>
                         }
-                      
-                       
-                    </div>
-                </form>
+            </Form>
+            
             </Modal>
         </>
      );

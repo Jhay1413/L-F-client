@@ -49,13 +49,11 @@ const PendingMatchPage = () => {
           )
         },
         {
-            title: 'User Name',
-            dataIndex: 'userId',
-            key: 'userId',
-            render: (userId)=>(
-              <>{userId.firstName}</>
-            )
-          },
+          title: 'user ID',
+          dataIndex: 'userId',
+          key: 'userId.user',
+          render: ((userId) =>userId?.user)
+        },
         {
           title: 'Status',
           dataIndex: 'Status',

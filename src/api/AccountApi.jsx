@@ -4,7 +4,9 @@ const Account_api = import.meta.env.VITE_API_ACCOUNT
 
 export const addAccount = async (data)=>{
     try {
-        const response = await axios.post(`${Account_api}/insertAccount`,data)
+        const response = await axios.post(`${Account_api}/insertAccount`,data,{
+            headers:{"Content-Type":"multipart/form-data"}
+        })
         return response
     } catch (error) {
         console.log(error)

@@ -32,10 +32,10 @@ const ClaimedItemPage = () => {
           }
         },
         {
-          title: 'Claimant ID',
+          title: 'Claimant',
           dataIndex: 'userId',
           key: 'userId.user',
-          render: ((userId) =>userId?.user)
+          render: ((userId) =>userId?.user.firstName)
         },
       
         {

@@ -52,10 +52,10 @@ const PendingMatchPage = () => {
         }
       },
         {
-          title: 'user ID',
+          title: 'Name',
           dataIndex: 'userId',
           key: 'userId.user',
-          render: ((userId) =>userId?.user)
+          render: ((userId) =>userId?.user.firstName)
         },
         {
           title: 'Status',
@@ -86,7 +86,9 @@ const PendingMatchPage = () => {
 
        }
        
-      
+      useEffect(()=>{
+        console.log(pendingItems);
+      })
     return ( 
         <>
             <div className="flex flex-col w-full h-full space-y-4">

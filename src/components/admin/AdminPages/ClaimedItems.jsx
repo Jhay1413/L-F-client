@@ -14,10 +14,14 @@ const ClaimedItemPage = () => {
         title:'Claimed Items'
     }
     const columns = [
+    
         {
-          title: 'Transaction ID',
-          dataIndex: '_id',
-          key: '_id',
+          title: 'Lost Item ID',
+          dataIndex: 'matchWith',
+          key: 'matchWith',
+          render: (matchWith)=>(
+            <>{matchWith?._id}</>
+          ),
           filteredValue: [searchedData],
           onFilter:(value,record)=>{
             return (
@@ -26,14 +30,6 @@ const ClaimedItemPage = () => {
               .includes(value.toLowerCase())
               )
           }
-        },
-        {
-          title: 'Lost Item ID',
-          dataIndex: 'matchWith',
-          key: 'matchWith',
-          render: (matchWith)=>(
-            <>{matchWith?._id}</>
-          )
         },
         {
           title: 'Claimant ID',

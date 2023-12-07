@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../context/DataContext";
 import { FaPlus, FaFileExport} from "react-icons/fa6";
-import { Button, Space, Table } from "antd";
+import { Button, Input, Space, Table } from "antd";
 import { Image } from 'cloudinary-react';
 import ItemPendingModal from "../AdminModals/ItemPendingModal";
 import {updateStatus } from "../../../api/MatchItemApi";
@@ -10,7 +10,7 @@ const PendingMatchPage = () => {
     const {pendingItems,setUpdate} = useContext(DataContext);
     const [selectedItem,setSelectedItem] = useState();
     const [openViewModal,setOpenViewModal] = useState(false);
-    
+    const [searchedData,setSearchData] = useState("");
     const confirmMatch =  async()=>{
       const status = "Found"
       const response = await updateStatus(selectedItem,status);
@@ -35,19 +35,22 @@ const PendingMatchPage = () => {
     ]
     }
     const columns = [
-        {
-          title: 'Transaction ID',
-          dataIndex: '_id',
-          key: '_id',
-        },
-        {
-          title: 'Lost Item ID',
-          dataIndex: 'matchWith',
-          key: 'matchWith',
-          render: (matchWith)=>(
-            <>{matchWith?._id}</>
-          )
-        },
+      {
+        title: 'Lost Item ID',
+        dataIndex: 'matchWith',
+        key: 'matchWith',
+        render: (matchWith)=>(
+          <>{matchWith?._id}</>
+        ),
+        filteredValue: [searchedData],
+        onFilter:(value,record)=>{
+          return (
+            String(record.Status)
+            .toLowerCase()
+            .includes(value.toLowerCase())
+            )
+        }
+      },
         {
           title: 'user ID',
           dataIndex: 'userId',
@@ -92,6 +95,15 @@ const PendingMatchPage = () => {
                  <button className="p-2 bg-white rounded-sm flex justify-center items-center space-x-2"><div><FaFileExport/></div><div>Export</div></button>
              </div>
              <div className="w-full h-full bg-white rounded-lg p-4">
+             <div className="w-full justify-end items-center flex">
+                          <Input.Search 
+                            placeholder='searchbox'
+                            onChange={(e)=>{
+                              setSearchData(e.target.value.toLowerCase());
+                            }}
+                            className='md:w-52 p-2'
+                          />
+                    </div>
                  <Table dataSource={pendingItems?.map(data=>({...data,key:data._id}))} columns={columns} pagination={{pageSize:7}} />
              </div>
              {selectedItem ? (  <ItemPendingModal selectedItem={selectedItem} openViewModal={openViewModal} setOpenViewModal={setOpenViewModal} modalDynamicData={modalDynamicData}/>) : null}

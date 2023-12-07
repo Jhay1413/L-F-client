@@ -8,6 +8,7 @@ const items = [
     {name:"Gadgets",ItemTypes:['Mobile Phone','Tablet','Laptop']},
     {name:"Bags",ItemTypes:['Backpack','Belt Bag','Shoulder Bag','Sling Bag']},
     {name:"Wallet",ItemTypes:['Coin purse','Long Wallet','Medium Wallet']},
+    {name:"Others",ItemTypes:['...']},
 ]
 
 const LostItemPage = () => {
@@ -110,16 +111,27 @@ const LostItemPage = () => {
                           )}
                         </select>
                     </div>
-                   
-                     <div className="flex flex-col w-full space-y-2">
-                            <label>Types of {lostItemInfo.ItemCategory}</label>
-                                <select name="ItemTypes" className="w-full lg:w-4/5 p-2 border-2 border-gray-400" onChange={handleInputChange}>
-                                        <option>Select Category</option>
-                                        {selectedItemObject?.ItemTypes.map((item,index)=>(
-                                            <option key = {item} value={item}>{item}</option>
-                                        ))}
-                                </select>
-                            </div>   
+                            
+                    
+                        {lostItemInfo.ItemCategory === "Others" ?  
+                             <div className="flex flex-col w-full space-y-2">
+                                <label>Type of Item</label>
+                             <input type="text" name="ItemTypes" className="w-full lg:w-4/5 p-2 border-2 border-gray-400" placeholder="Type of items" onChange={handleInputChange}/>
+                         </div>
+                         :
+                         <div className="flex flex-col w-full space-y-2">
+                            <label>Types of {lostItemInfo.ItemCategory === "Others" ? "" : lostItemInfo.ItemCategory}</label>
+                                    
+                            <select name="ItemTypes" className="w-full lg:w-4/5 p-2 border-2 border-gray-400" onChange={handleInputChange}>
+                                    <option >Select Category</option>
+                                    {selectedItemObject?.ItemTypes.map((item,index)=>(
+                                        <option key = {item} value={item}>{item}</option>
+                                    ))}
+                            </select>
+                            
+                         </div>   
+                        }
+                           
                     <div className="flex flex-col w-full space-y-2">
                         <label>Brand</label>
                         <input type="text" name="ItemBrand" className="w-full lg:w-4/5 p-2 border-2 border-gray-400" placeholder="Brand" onChange={handleInputChange}/>

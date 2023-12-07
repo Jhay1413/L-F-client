@@ -29,10 +29,11 @@ const ItemList = () => {
   
       
       const columns = [
+    
         {
-          title: 'Item ID',
-          dataIndex: '_id',
-          key: '_id',
+          title: 'Item Category',
+          dataIndex: 'ItemCategory',
+          key: 'ItemCategory',
           filteredValue: [searchedData],
           onFilter:(value,record)=>{
             return (
@@ -45,11 +46,6 @@ const ItemList = () => {
               
               )
           }
-        },
-        {
-          title: 'Item Category',
-          dataIndex: 'ItemCategory',
-          key: 'ItemCategory',
         },
         {
           title: 'Item Color',

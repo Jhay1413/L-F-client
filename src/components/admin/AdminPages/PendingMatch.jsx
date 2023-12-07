@@ -35,27 +35,29 @@ const PendingMatchPage = () => {
     ]
     }
     const columns = [
-      {
-        title: 'Lost Item ID',
-        dataIndex: 'matchWith',
-        key: 'matchWith',
-        render: (matchWith)=>(
-          <>{matchWith?._id}</>
-        ),
-        filteredValue: [searchedData],
-        onFilter:(value,record)=>{
-          return (
-            String(record.Status)
-            .toLowerCase()
-            .includes(value.toLowerCase())
-            )
-        }
-      },
+
         {
           title: 'Name',
           dataIndex: 'userId',
           key: 'userId.user',
-          render: ((userId) =>userId?.user.firstName)
+          render: ((userId) =>userId?.user.firstName),
+          filteredValue: [searchedData],
+          onFilter:(value,record)=>{
+            return (
+              String(record.Status)
+              .toLowerCase()
+              .includes(value.toLowerCase()) ||
+              String(record.ItemCategory)
+              .toLowerCase()
+              .includes(value.toLowerCase()) || 
+              String(record.ItemTypes)
+              .toLowerCase()
+              .includes(value.toLowerCase()) ||
+              String(record.userId.user.firstName)
+              .toLowerCase()
+              .includes(value.toLowerCase())
+              )
+          }
         },
         {
           title: 'Status',

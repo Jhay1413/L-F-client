@@ -16,26 +16,27 @@ const ClaimedItemPage = () => {
     const columns = [
     
         {
-          title: 'Lost Item ID',
-          dataIndex: 'matchWith',
-          key: 'matchWith',
-          render: (matchWith)=>(
-            <>{matchWith?._id}</>
-          ),
+          title: 'Claimant',
+          dataIndex: 'userId',
+          key: 'userId.user',
+          render: ((userId) =>userId?.user.firstName),
           filteredValue: [searchedData],
           onFilter:(value,record)=>{
             return (
               String(record.Status)
               .toLowerCase()
+              .includes(value.toLowerCase()) ||
+              String(record.ItemCategory)
+              .toLowerCase()
+              .includes(value.toLowerCase()) || 
+              String(record.ItemTypes)
+              .toLowerCase()
+              .includes(value.toLowerCase()) ||
+              String(record.userId.user.firstName)
+              .toLowerCase()
               .includes(value.toLowerCase())
               )
           }
-        },
-        {
-          title: 'Claimant',
-          dataIndex: 'userId',
-          key: 'userId.user',
-          render: ((userId) =>userId?.user.firstName)
         },
       
         {

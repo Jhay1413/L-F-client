@@ -44,6 +44,16 @@ const ClaimedItemPage = () => {
           key: 'Status',
         },
         {
+          title: 'Item Category',
+          dataIndex: 'ItemCategory',
+          key: 'ItemCategory',
+        },
+        {
+          title: 'Item Types',
+          dataIndex: 'ItemTypes',
+          key: 'ItemTypes',
+        },
+        {
           title: 'Date',
           dataIndex: 'Date',
           key: 'Date',

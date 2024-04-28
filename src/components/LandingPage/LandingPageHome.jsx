@@ -7,9 +7,9 @@ const LandingHome = () => {
            <div className="w-full text-lg p-4 lg:text-xl text-white h-screen">
                 <div className="flex flex-col items-center justify-center w-full mx-auto h-full lg:flex-row md:justify-between md:w-4/5">
                     <div className="flex flex-col items-center text-center text-black justify-center w-full md:w-2/4 p-4">
-                        <h1 className='text-3xl font-bold lg:text-6xl '>POWERFUL LOST AND FOUND MADE EASY</h1>
-                        <p className='text-sm font-semibold lg:text-base'>The only App with Image Recognition that reduce your Lost and Found handling time and costs up to 90 %.</p>
-                        
+                        <h1 className='text-3xl font-bold lg:text-6xl '>Lost and Found System</h1>
+                        <p className='text-sm font-semibold lg:text-base'> Eastern Visayas State University-Main Campus.</p>
+                      
                     </div>
                     <div className="hidden lg:flex flex-col justify-center w-2/4 p-4">
                         <img src={logo} alt="Logo" className='rounded-lg'/>

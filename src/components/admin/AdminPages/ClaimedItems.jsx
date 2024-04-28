@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { DataContext } from "../context/DataContext";
 import { FaPlus, FaFileExport} from "react-icons/fa6";
 import ItemPendingModal from "../AdminModals/ItemPendingModal";
-
+import moment from 'moment';
 const ClaimedItemPage = () => {
     const {claimedItems,setUpdate} = useContext(DataContext);
     const [openViewModal,setOpenViewModal] = useState(false);
@@ -58,6 +58,7 @@ const ClaimedItemPage = () => {
           title: 'Date',
           dataIndex: 'Date',
           key: 'Date',
+          render: (text) => moment(text).format('YYYY-MM-DD')
         },
         {
             title:'Actions',

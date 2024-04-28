@@ -5,6 +5,7 @@ import { Image } from "cloudinary-react";
 import { FaPlus, FaFileExport} from "react-icons/fa6";
 import ItemPendingModal from "../AdminModals/ItemPendingModal";
 import { updateStatus } from "../../../api/MatchItemApi";
+import moment from 'moment';
 const ApproveMatchPage = () => {
     const {confirmMatchItems,setUpdate} = useContext(DataContext) 
     const [selectedItem,setSelectedItem] = useState();
@@ -13,6 +14,7 @@ const ApproveMatchPage = () => {
     const claimItem = async() =>{
       const status = "Claimed"
       const response = await updateStatus(selectedItem,status)
+      console.log(response);
       setUpdate(prev=>!prev);
       setOpenViewModal(!openViewModal)
     }
@@ -25,8 +27,8 @@ const ApproveMatchPage = () => {
     const modalDynamicData = {
       title:'Unclaimed Items',
       buttons:[
-        {label:'Claim', onClick:claimItem,className:"bg-emerald-400 text-white p-2 text-xl rounded-lg"},
-        {label:'Unmatch',onClick:unmatchedItem,className:"bg-red-400 text-white p-2 text-xl rounded-lg "}
+        {label:'Claim', onClick:claimItem,className:"bg-emerald-400 text-white p-2 text-md rounded-lg"},
+        {label:'Unmatch',onClick:unmatchedItem,className:"bg-red-400 text-white p-2 text-md rounded-lg "}
       ]
     }
     const columns = [
@@ -71,9 +73,15 @@ const ApproveMatchPage = () => {
           key: 'ItemTypes',
         },
         {
+          title: 'Item Types',
+          dataIndex: 'ItemTypes',
+          key: 'ItemTypes',
+        },
+        {
           title: 'Date',
           dataIndex: 'Date',
           key: 'Date',
+          render: (text) => moment(text).format('YYYY-MM-DD'), 
         },
         {
             title:'Actions',

@@ -56,7 +56,7 @@ const AddUserModal = ({isModalOpen,onClose}) => {
                 <Input onChange={(e)=>handleOnChange('idNo',e)}/>
             </Form.Item>
             <Form.Item
-                className="col-span-1"
+                className="col-span-4"
                 label="First Name"
                 name="firstName"
                 rules={[
@@ -69,7 +69,7 @@ const AddUserModal = ({isModalOpen,onClose}) => {
                <Input onChange={(e)=>handleOnChange('firstName',e)}/>
             </Form.Item>
             <Form.Item
-                className="col-span-1"
+                className="col-span-4"
                 label="Last Name"
                 name="lastName"
                 rules={[

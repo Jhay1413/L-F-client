@@ -1,16 +1,20 @@
 import { FaGripLines, FaGripLinesVertical } from "react-icons/fa6";
 import { useNavigate } from "react-router";
+import { BsFillCaretLeftFill } from "react-icons/bs";
 const AdminHeader = ({navState,setNavState}) => {
     const navigate = useNavigate();
-    const logout = () =>{
-        localStorage.removeItem('userInfo');
-        navigate('/auth/')
-    }
     return ( 
         <>
             <div className="p-2 text-2xl text-black flex justify-between ">
-               <button onClick={()=> setNavState(!navState)} className={`transition-transform duration-1000 ease-in-out transform ${navState ? 'rotate-0' : 'rotate-45'}`}>{navState ? <FaGripLines/> : <FaGripLinesVertical/>}</button>
-               <button  onClick={logout}>Logout</button>
+            <button
+  onClick={() => setNavState(!navState)}
+  style={{
+    transition: 'transform 1s ease-in-out',
+    transform: `rotate(${navState ? '180deg': '0deg'})`,
+  }}
+>
+  {navState ? <BsFillCaretLeftFill /> : <BsFillCaretLeftFill />}
+</button>
             </div>
         </>
      );

@@ -28,6 +28,7 @@ const ItemPendingModal = ({selectedItem,openViewModal,setOpenViewModal,modalDyna
                             <li className="p-2 border-b-2  w-full justify-between items-center flex"><h1 className="w-full">Brand</h1><h1 className="w-full flex justify-start font-bold">{selectedItem.ItemBrand}</h1></li>
                             <li className="p-2 border-b-2  w-full justify-between items-center flex"><h1 className="w-full">Color</h1><h1 className="w-full flex justify-start font-bold">{selectedItem.ItemColor}</h1></li>
                             <li className="p-2 border-b-2  w-full justify-between items-center flex"><h1 className="w-full">Types</h1><h1 className="w-full flex justify-start font-bold">{selectedItem.ItemTypes}</h1></li>
+                            <li className="p-2 border-b-2  w-full justify-between items-center flex"><h1 className="w-full">Other Details</h1><h1 className="w-full flex justify-start font-bold">{selectedItem.OtherDetails}</h1></li>
                             <li className="p-2 border-b-2  w-full justify-between items-center flex"><h1 className="w-full">From</h1><h1 className="w-full flex justify-start font-bold">Found Items</h1></li>
                         </ul>
                       

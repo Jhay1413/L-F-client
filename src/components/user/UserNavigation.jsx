@@ -22,8 +22,8 @@ const UserNavigation = () => {
           <div className="lg:w-8/12 w-full mx-auto p-2 flex lg:flex-row flex-col flex justify-between">
             <div className="flex flex-row justify-center w-full">
               <div className="flex flex-col p-2 justify-center w-full ">
-                <h1 className="text-lg lg:text-3xl">LOSTINGS</h1>
-                <h3 className="text-xs lg:text-sm">LOST IT AND FOUND IT</h3>
+                <h1 className="text-lg lg:text-3xl">You lost it, I'll find it</h1>
+           
               </div>
               <div className="w-full flex justify-end items-center text-4xl lg:hidden">
                 <button onClick={()=>setShowNav(!showNav)}>

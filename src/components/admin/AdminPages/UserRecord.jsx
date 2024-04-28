@@ -1,5 +1,5 @@
 import { Input, Table } from "antd";
-import { FaFileExport } from "react-icons/fa6";
+import { FaFileExport, FaPlus } from "react-icons/fa6";
 import EmployeeAddModal from "../AdminModals/addEmployeeModal";
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
@@ -67,7 +67,7 @@ const UserRecord = () => {
             <div className="flex flex-col w-full h-full space-y-4">
                     
                 <div className="flex justify-start space-x-4">
-                    <button className="p-2 bg-white rounded-sm flex justify-center items-center space-x-2 bg-blue-700  " onClick={()=>setIsModalOpen(true)}><div><FaFileExport/></div><div>Add</div></button>
+                    <button className="p-2 bg-blue-500 rounded-sm text-white flex justify-center items-center space-x-2" onClick={()=>setIsModalOpen(true)}> <div><FaPlus/></div><div>Add Record</div></button>
                 </div>
                 <div className="w-full h-full bg-white rounded-lg p-4">
                   <div className="w-full justify-end items-center flex">

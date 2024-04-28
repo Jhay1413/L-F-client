@@ -49,6 +49,7 @@ const LostItemPage = () => {
         formData.append("ItemTypes",lostItemInfo.ItemTypes)
         formData.append("ItemBrand",lostItemInfo.ItemBrand)
         formData.append("ItemColor",lostItemInfo.ItemColor)
+        formData.append("OtherDetails",lostItemInfo.OtherDetails)
         formData.append("image",lostItemInfo.ItemImage)
         formData.append("userId",userInfoObj._id)
 
@@ -140,12 +141,16 @@ const LostItemPage = () => {
                         <label>Primary Color</label>
                         <input type="text" name="ItemColor" className="w-full lg:w-4/5 p-2 border-2 border-gray-400" placeholder="Primary Color" onChange={handleInputChange}/>
                     </div>
+                    <div className="flex flex-col w-full space-y-2">
+                        <label>Other Details</label>
+                        <textarea type="text" name="OtherDetails" className="w-full lg:w-4/5 p-2 border-2 border-gray-400" placeholder="Other Details" onChange={handleInputChange}/>
+                    </div>
                     <div className="flex flex-col w-full space-y-2 justify-center">
                         <label>Upload Image</label>
                         <input type="file"  name = "ItemImage" accept="image/*" className="w-4/5 p-" onChange={handleImageChange}/>
                     </div>
                    
-                </div>
+                </div> 
                 <div className="w-4/5 pt-5 flex  items-center">
                         <button className="p-2 bg-sky-700  rounded-md text-white text-sm lg:text-md" onClick={submitItem}>Submit</button>
                 </div>

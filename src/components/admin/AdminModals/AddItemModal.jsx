@@ -223,9 +223,9 @@ const ItemFormModal = ({modalOpen,setModalOpen,showToast,selectedItem,setSelecte
                 </div>
                 {
                             selectedItem._id === undefined ? 
-                            <button className="bg-blue-500 p-2 rounded-lg text-white text-lg" onClick={handleSubmit}>Submit</button>
+                            <button className="bg-blue-500 p-2 rounded-lg text-white text-md" onClick={handleSubmit}>Submit</button>
                             :
-                            <button className="bg-blue-500 p-2 rounded-lg text-white text-lg" onClick={handleUpdate}>Update</button>
+                            <button className="bg-blue-500 p-2 rounded-lg text-white text-md" onClick={handleUpdate}>Update</button>
                         }
             </Form>
             

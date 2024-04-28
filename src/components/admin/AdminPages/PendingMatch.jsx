@@ -5,6 +5,7 @@ import { Button, Input, Space, Table } from "antd";
 import { Image } from 'cloudinary-react';
 import ItemPendingModal from "../AdminModals/ItemPendingModal";
 import {updateStatus } from "../../../api/MatchItemApi";
+import moment from 'moment';
 const PendingMatchPage = () => {
 
     const {pendingItems,setUpdate} = useContext(DataContext);
@@ -30,8 +31,8 @@ const PendingMatchPage = () => {
     const modalDynamicData ={
       title:'Pending Items',
       buttons:[
-        {label:'Confirm',onClick:confirmMatch, className:"bg-emerald-400 text-white p-2 text-xl rounded-lg"},
-        {label:'Decline',onClick:unConfirmedMatch,className:"bg-red-400 text-white p-2 text-xl rounded-lg "}
+        {label:'Confirm',onClick:confirmMatch, className:"bg-emerald-400 text-white p-2 text-md rounded-lg"},
+        {label:'Decline',onClick:unConfirmedMatch,className:"bg-red-400 text-white p-2 text-md rounded-lg "}
     ]
     }
     const columns = [
@@ -70,6 +71,11 @@ const PendingMatchPage = () => {
           key: 'ItemCategory',
         },
         {
+          title: 'Item Category',
+          dataIndex: 'OtherDetails',
+          key: 'OtherDetails',
+        },
+        {
           title: 'Item Types',
           dataIndex: 'ItemTypes',
           key: 'ItemTypes',
@@ -78,6 +84,8 @@ const PendingMatchPage = () => {
           title: 'Date',
           dataIndex: 'Date',
           key: 'Date',
+          render: (text) => moment(text).format('YYYY-MM-DD')
+          
         },
         {
             title:'Actions',

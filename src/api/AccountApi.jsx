@@ -9,7 +9,7 @@ export const addAccount = async (data)=>{
         })
         return response
     } catch (error) {
-        console.log(error)
+        throw new Error(error)
     }
 }
 export const loginAuth = async (email,password) =>{

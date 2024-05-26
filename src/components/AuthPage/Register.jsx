@@ -13,6 +13,9 @@ const RegistrationPage = () => {
     const queryClient = useQueryClient();
 
     const userRecord = queryClient.getQueryData(['userRecord']);
+
+
+
     const [selectedRole, setSelectedRole] = useState('Select Role')
 
 
@@ -38,6 +41,17 @@ const RegistrationPage = () => {
     const handleOnChange = (e) => {
 
         const { name, value } = e.target;
+
+        if (name == 'user') {
+            const userData = userRecord.find(obj => obj.idNo === value);
+            if (!userData) {
+                setErrMsgId('User ID not found')
+                setDisableBtn(true)
+            } else {
+                setErrMsgId('')
+                setDisableBtn(false)
+            }
+        }
         setUserInfo((prevState) => ({ ...prevState, [name]: value }))
     }
     const handleImageChange = (e) => {
@@ -54,54 +68,38 @@ const RegistrationPage = () => {
         e.preventDefault();
 
         const userData = userRecord.find(obj => obj.idNo === userInfo.user);
-        const formData = new FormData();
-        formData.append("user", userData._id)
-        formData.append("contact", userInfo.contact)
-        formData.append("address", userInfo.address)
-        formData.append("email", userInfo.email)
-        formData.append("password", userInfo.password)
-        formData.append("image", userInfo.image)
-        try {
-            const response = await addAccount(formData);
-            showToast('success', 'Account has been created ! !');
-            setTimeout(() => {
-                navigate('/auth')
-            }, 2000); // 
 
-        } catch (error) {
-            console.log(error);
+        if (userData) {
+
+            const formData = new FormData();
+            formData.append("user", userData._id)
+            formData.append("contact", userInfo.contact)
+            formData.append("address", userInfo.address)
+            formData.append("email", userInfo.email)
+            formData.append("password", userInfo.password)
+            formData.append("image", userInfo.image)
+            try {
+
+                await addAccount(formData);
+
+
+                showToast('success', 'Account has been created ! !');
+                setTimeout(() => {
+                    navigate('/auth')
+                }, 2000); // 
+
+            } catch (error) {
+                showToast('error', 'Account creation failed ! !');
+            }
+        }
+        else {
+            showToast('error', 'User ID not found');
         }
     }
     useEffect(() => {
 
-        function checkRole() {
-            const userId = userRecord.some(item => item.idNo === userInfo.user);
-            if (!userId) {
-                setErrMsgId('ID not found!')
+    })
 
-            }
-            else {
-                setErrMsgId('found');
-
-            }
-
-        }
-        function compare() {
-            if (userInfo.password !== confirmPassword) {
-                setErrMsg('password not match ');
-                setDisableBtn(true)
-
-            }
-            else {
-                setErrMsg('');
-                setDisableBtn(false);
-            }
-        }
-        checkRole();
-        compare();
-
-
-    }, [confirmPassword, userInfo.password, userInfo.user]);
     return (
         <>
             <ToastContainer />
@@ -120,7 +118,8 @@ const RegistrationPage = () => {
                             }}
                             className=''
                         >
-                            <Input placeholder="input user id" name="user" onChange={handleOnChange} />
+                            <span className="text-red-500">{errMsgId}</span>
+                            <Input placeholder="input user id" name="user" onChange={handleOnChange} required />
                         </Form.Item>
                         <Form.Item
                             label="Image"
@@ -129,7 +128,7 @@ const RegistrationPage = () => {
                             ''>
                             <Input type="file" accept="image/*" name="ItemImage" onChange={handleImageChange} />
                         </Form.Item>
-                         <Form.Item
+                        <Form.Item
 
                             label="Address"
                             tooltip={{ title: 'Tooltip with customize icon', icon: <InfoCircleOutlined /> }}
@@ -138,7 +137,7 @@ const RegistrationPage = () => {
                         >
                             <Input placeholder="input Address" name="address" onChange={handleOnChange} />
                         </Form.Item>
-                        
+
                         <Form.Item
                             label="Email"
                             tooltip={{ title: 'Tooltip with customize icon', icon: <InfoCircleOutlined /> }}
@@ -152,8 +151,8 @@ const RegistrationPage = () => {
                             label="Contact #"
                             className='col-span-1 md:col-span-2 '
                             tooltip={{ title: 'Tooltip with customize icon', icon: <InfoCircleOutlined /> }}
-                            
-                            >
+
+                        >
                             <Input placeholder="input Contact #" name="contact"
                                 onChange={handleOnChange} />
                         </Form.Item>
@@ -162,12 +161,12 @@ const RegistrationPage = () => {
                             label="Password"
                             tooltip={{ title: 'Tooltip with customize icon', icon: <InfoCircleOutlined /> }}
                             className='col-span-1 md:col-span-2 '
-                            
-                            >
+
+                        >
                             <Input placeholder="input Password" name="password"
                                 onChange={handleOnChange} />
                         </Form.Item>
-                                
+
                         <Form.Item
                             label="Confirm Password"
                             tooltip={{ title: 'Tooltip with customize icon', icon: <InfoCircleOutlined /> }}
@@ -175,9 +174,9 @@ const RegistrationPage = () => {
 
                         >
                             <Input placeholder="input Confirm Password" />
-                        </Form.Item> 
+                        </Form.Item>
                     </div>
-                    <button className='bg-green-500  w-full text-xl flex items-center justify-center text-white p-2' onClick={handleSubmit}>Submit</button>
+                    <button className='bg-black w-full text-xl flex items-center justify-center text-white p-2' onClick={handleSubmit} disabled={disableBtn}>Submit</button>
                 </Form>
 
             </div>

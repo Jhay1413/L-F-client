@@ -66,7 +66,7 @@ const LoginPage = () => {
                     <button className='p-2 bg-gradient-to-r from-red-500 to-pink-500 text-white' onClick={login}    >{loading ? <Spin /> : "Login"}</button>
                 </div>
                 <div className="">
-                    <h1>Dosent have an account ? <Link to="/auth/Register" className='text-blue-500'>Register here</Link></h1>
+                    <h1>Need an account? <Link to="/auth/Register" className='text-blue-500'>Register here</Link></h1>
                 </div>
             </div>
         </>

@@ -21,12 +21,7 @@ const LandingHeader = () => {
                               
                             </div>
                             <div className={`${showNav ? 'flex' : 'hidden'} flex-col justify-center lg:flex lg:flex-row items-center lg:justify-between space-y-5 lg:space-y-0 lg:space-x-2'`}>
-                                    <ul className="flex w-full text-bold text-sm flex-col items-center space-y-4 lg:space-y-0 lg:flex-row lg:space-x-4 lg:text-bold">
-                                        <li>HOME</li>
-                                        <li>ABOUT</li>
-                                        <li>FEATURES</li>
-                                        <li>CONTACT</li>
-                                    </ul>
+                                    
                                     <ul className='flex w-full items-center justify-center p-2'>
                                         <Link to="/auth" className='w-full flex  items-center justify-center border-2 border-slate-500 p-2 '>LOGIN</Link>
                                     </ul>
